@@ -5,11 +5,12 @@ class Pez(Animal):
     salmones = 0
     bacalaos = 0
 
-    def __init__(self, nombre=None, edad=None, habitat=None, genero=None, color_escamas=None, cantidad_aletas=None, zona=None):
+    def __init__(self, nombre, edad, habitat, genero,
+                 colorEscamas = None, cantidadAletas = None, zona = None) -> None:
         super().__init__(nombre, edad, habitat, genero, zona)
-        self.color_escamas = color_escamas
-        self.cantidad_aletas = cantidad_aletas
-        Pez.listado.append(self)
+        self._colorEscamas = colorEscamas
+        self._cantidadAletas = cantidadAletas
+        self._listado.append(self)
 
     @staticmethod
     def get_listado():

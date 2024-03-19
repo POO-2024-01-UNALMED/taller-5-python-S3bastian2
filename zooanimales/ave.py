@@ -5,10 +5,11 @@ class Ave(Animal):
     halcones = 0
     aguilas = 0
 
-    def __init__(self, nombre=None, edad=None, habitat=None, genero=None, color_plumas=None, zona=None):
+    def __init__(self, nombre, edad, habitat, genero,
+                 colorPlumas = None, zona = None) -> None:
         super().__init__(nombre, edad, habitat, genero, zona)
-        self.color_plumas = color_plumas
-        Ave.listado.append(self)
+        self._colorPlumas = colorPlumas
+        self._listado.append(self)
 
     @staticmethod
     def get_listado():
