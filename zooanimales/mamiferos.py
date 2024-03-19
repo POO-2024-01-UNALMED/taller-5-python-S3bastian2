@@ -1,4 +1,6 @@
-class Mamifero(animal):
+from zooanimales.animal import Animal
+
+class Mamifero(Animal):
     listado = []
     caballos = 0
     leones = 0

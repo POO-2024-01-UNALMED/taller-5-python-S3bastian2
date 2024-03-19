@@ -1,3 +1,5 @@
+import zooanimales
+
 class Animal:
     total_animales = 0
     listado = []
