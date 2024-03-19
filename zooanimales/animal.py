@@ -58,15 +58,19 @@ class Animal:
     def movimiento(self):
         return "desplazarse"
 
-    @staticmethod
-    def total_por_tipo():
-        return "Mamiferos: {}\nAves: {}\nReptiles: {}\nPeces: {}\nAnfibios: {}".format(
-            len(Mamifero.get_listado()),
-            len(Ave.get_listado()),
-            len(Reptil.get_listado()),
-            len(Pez.get_listado()),
-            len(Anfibio.get_listado())
-        )
+    @classmethod
+    def totalPorTipo(cls):
+        totalPorTipo: str = ""
+        contador = 0
+        for x in [zooanimales.mamifero.Mamifero, 
+                  zooanimales.ave.Ave, 
+                  zooanimales.reptil.Reptil, 
+                  zooanimales.pez.Pez, 
+                  zooanimales.anfibio.Anfibio]:
+            nombre = ["Mamiferos", "Aves", "Reptiles", "Peces", "Anfibios"]
+            totalPorTipo += f"{nombre[contador]} : {len(x.getListado())}\n"
+            contador += 1
+        return totalPorTipo
 
     def __str__(self):
         if self.zona:
