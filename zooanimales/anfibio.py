@@ -1,10 +1,10 @@
 from zooanimales.animal import Animal
 
 class Anfibio(Animal):
-    listado = []
-    ranas = 0
-    salamandras = 0
-
+    _listado: list = []
+    ranas: int = 0
+    salamandras: int = 0
+    
     def __init__(self, nombre, edad, habitat, genero,
                  colorPiel = None, venenoso = None, zona = None) -> None:
         super().__init__(nombre, edad, habitat, genero, zona)
@@ -12,39 +12,38 @@ class Anfibio(Animal):
         self._venenoso = venenoso
         self._listado.append(self)
 
-    @staticmethod
-    def get_listado():
-        return Anfibio.listado
+    @classmethod
+    def getListado(cls):
+        return cls._listado
+    @classmethod
+    def setListado(cls, listado):
+        cls._listado = listado
+
+    def getColorPiel(self):
+        return self._colorPiel
+    def setColorPiel(self, color):
+        self._colorPiel = color
+
+    def isVenenoso(self):
+        return self._venenoso
+    def setVenenoso(self, venenoso):
+        self._venenoso= venenoso
 
     @staticmethod
-    def set_listado(listado):
-        Anfibio.listado = listado
-
-    def get_color_piel(self):
-        return self.color_piel
-
-    def set_color_piel(self, color_piel):
-        self.color_piel = color_piel
-
-    def is_venenoso(self):
-        return self.venenoso
-
-    def set_venenoso(self, venenoso):
-        self.venenoso = venenoso
-
-    @staticmethod
-    def cantidad_anfibios():
-        return len(Anfibio.listado)
+    def cantidadAnfibios(self):
+        Anfibio._totalAnimales
 
     def movimiento(self):
-        return "saltar"
+        pass
 
     @staticmethod
-    def crear_rana(nombre, edad, genero, zona=None):
+    def crearRana(nombre, edad, genero, zona = None):
         Anfibio.ranas += 1
-        return Anfibio(nombre, edad, "selva", genero, "rojo", True, zona)
+        return Anfibio(nombre, edad, "selva", genero, zona,
+                 "rojo", True)
 
     @staticmethod
-    def crear_salamandra(nombre, edad, genero, zona=None):
+    def crearSalamandra(nombre, edad, genero, zona = None):
         Anfibio.salamandras += 1
-        return Anfibio(nombre, edad, "selva", genero, "negro y amarillo", False, zona)
+        return Anfibio(nombre, edad, "selva", genero, zona,
+                 "negro y amarillo", False)

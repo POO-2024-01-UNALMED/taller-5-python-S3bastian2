@@ -1,9 +1,9 @@
 from zooanimales.animal import Animal
 
 class Mamifero(Animal):
-    listado = []
-    caballos = 0
-    leones = 0
+    _listado: list = []
+    caballos: int = 0
+    leones: int = 0
 
     def __init__(self, nombre, edad, habitat, genero,
                  pelaje = None, patas = None, zona = None) -> None:
@@ -12,36 +12,34 @@ class Mamifero(Animal):
         self._patas = patas
         self._listado.append(self)
 
-    @staticmethod
-    def get_listado():
-        return Mamifero.listado
+    @classmethod
+    def getListado(cls):
+        return cls._listado
+    @classmethod
+    def setListado(cls, listado):
+        cls._listado = listado
+
+    def isPelaje(self):
+        return self._pelaje
+    def setPelaje(self, pelaje):
+        self._pelaje = pelaje
+
+    def getPatas(self):
+        return self._patas
+    def setPatas(self, patas):
+        self._patas = patas
 
     @staticmethod
-    def set_listado(listado):
-        Mamifero.listado = listado
-
-    def is_pelaje(self):
-        return self.pelaje
-
-    def set_pelaje(self, pelaje):
-        self.pelaje = pelaje
-
-    def get_patas(self):
-        return self.patas
-
-    def set_patas(self, patas):
-        self.patas = patas
+    def cantidadMamiferos(self):
+        return Mamifero._totalAnimales
 
     @staticmethod
-    def cantidad_mamiferos():
-        return len(Mamifero.listado)
-
-    @staticmethod
-    def crear_caballo(nombre, edad, genero, zona=None):
+    def crearCaballo(nombre, edad, genero, zona = None):
         Mamifero.caballos += 1
-        return Mamifero(nombre, edad, "pradera", genero, True, 4, zona)
+        return Mamifero(nombre, edad, "pradera", genero, zona,
+                 True, 4)
 
-    @staticmethod
-    def crear_leon(nombre, edad, genero, zona=None):
+    def crearLeon(nombre, edad, genero, zona = None):
         Mamifero.leones += 1
-        return Mamifero(nombre, edad, "selva", genero, True, 4, zona)
+        return Mamifero(nombre, edad, "selva", genero, zona,
+                 True, 4)

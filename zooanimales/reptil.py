@@ -1,9 +1,9 @@
 from zooanimales.animal import Animal
 
 class Reptil(Animal):
-    listado = []
-    iguanas = 0
-    serpientes = 0
+    _listado: list = []
+    iguanas: int = 0
+    serpientes: int = 0
 
     def __init__(self, nombre, edad, habitat, genero,
                  colorEscamas = None, largoCola = None,  zona = None) -> None:
@@ -12,39 +12,38 @@ class Reptil(Animal):
         self._largoCola = largoCola
         self._listado.append(self)
 
-    @staticmethod
-    def get_listado():
-        return Reptil.listado
+    @classmethod
+    def getListado(cls):
+        return cls._listado
+    @classmethod
+    def setListado(cls, listado):
+        cls._listado = listado
+
+    def getColorEscamas(self):
+        return self._colorEscamas
+    def setColorEscamas(self, color):
+        self._colorEscamas = color
+
+    def getLargoCola(self):
+        return self._largoCola
+    def setLargoCola(self, largo):
+        self._largoCola = largo
 
     @staticmethod
-    def set_listado(listado):
-        Reptil.listado = listado
-
-    def get_color_escamas(self):
-        return self.color_escamas
-
-    def set_color_escamas(self, color):
-        self.color_escamas = color
-
-    def get_largo_cola(self):
-        return self.largo_cola
-
-    def set_largo_cola(self, largo):
-        self.largo_cola = largo
-
-    @staticmethod
-    def cantidad_reptiles():
-        return len(Reptil.listado)
+    def cantidadReptiles():
+        return Reptil._totalAnimales
 
     def movimiento(self):
-        return "reptar"
+        pass
 
     @staticmethod
-    def crear_iguana(nombre, edad, genero, zona=None):
+    def crearIguana(nombre, edad, genero, zona = None):
         Reptil.iguanas += 1
-        return Reptil(nombre, edad, "humedal", genero, "verde", 3, zona)
+        return Reptil(nombre, edad, "humedal", genero, zona,
+                 "verde", 3)
 
-    @staticmethod
-    def crear_serpiente(nombre, edad, genero, zona=None):
+    def crearSerpiente(nombre, edad, genero, zona = None):
         Reptil.serpientes += 1
-        return Reptil(nombre, edad, "jungla", genero, "blanco", 1, zona)
+        return Reptil(nombre, edad, "jungla", genero, zona,
+                 "blanco", 1)
+
