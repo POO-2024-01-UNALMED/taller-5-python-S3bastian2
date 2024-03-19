@@ -1,4 +1,4 @@
-class Ave(Animal):
+class Ave(animal):
     listado = []
     halcones = 0
     aguilas = 0
