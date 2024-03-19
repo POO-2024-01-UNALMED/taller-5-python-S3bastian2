@@ -5,11 +5,12 @@ class Anfibio(Animal):
     ranas = 0
     salamandras = 0
 
-    def __init__(self, nombre=None, edad=None, habitat=None, genero=None, color_piel=None, venenoso=None, zona=None):
+    def __init__(self, nombre, edad, habitat, genero,
+                 colorPiel = None, venenoso = None, zona = None) -> None:
         super().__init__(nombre, edad, habitat, genero, zona)
-        self.color_piel = color_piel
-        self.venenoso = venenoso
-        Anfibio.listado.append(self)
+        self._colorPiel = colorPiel
+        self._venenoso = venenoso
+        self._listado.append(self)
 
     @staticmethod
     def get_listado():
